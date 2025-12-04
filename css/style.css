@@ -26,8 +26,8 @@
 
     --font-size-base: 16px;
     --font-size-h1: clamp(2.5rem, 3.4vw, 3.3rem);
-    --font-size-h2: clamp(2rem, 2.7vw, 2.7rem);
-    --font-size-h3: clamp(1.6rem, 2.2vw, 2.1rem);
+    --font-size-h2: clamp(1.9rem, 2.4vw, 2.4rem);
+    --font-size-h3: clamp(1.4rem, 2vw, 1.9rem);
 }
 
 *,
@@ -99,7 +99,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-block: 0.75rem;
+    padding-block: 0.4rem; /* navbar mais baixa */
     gap: 1.5rem;
 }
 
@@ -110,8 +110,9 @@ a {
     gap: 0.5rem;
 }
 
+/* LOGO RESPONSIVA – maior, porém controlada */
 .logo__img {
-    height: 36px;
+    height: clamp(64px, 9vw, 88px);
     width: auto;
 }
 
@@ -312,7 +313,7 @@ a {
 
 .inscricao__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr); /* apenas texto */
     gap: 2.5rem;
     align-items: center;
 }
@@ -363,47 +364,6 @@ a {
     margin-top: 0.6rem;
     font-size: 0.85rem;
     color: var(--cor-texto-suave);
-}
-
-/* Card lateral */
-.inscricao__card {
-    justify-self: stretch;
-}
-
-.inscricao__card-inner {
-    background: linear-gradient(135deg, #fff7f1, #ffe1ce);
-    border-radius: var(--radius-lg);
-    padding: 1.8rem 1.6rem;
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.06);
-}
-
-.inscricao__card-inner h3 {
-    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 1.35rem;
-    margin-bottom: 0.5rem;
-    color: var(--cor-titulos);
-}
-
-.inscricao__card-inner p {
-    font-size: 0.95rem;
-    color: var(--cor-texto-suave);
-    margin-bottom: 1rem;
-}
-
-.inscricao__pill {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.inscricao__pill span {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    border-radius: var(--radius-pill);
-    padding: 0.35rem 0.9rem;
-    border: 1px solid rgba(237, 134, 75, 0.55);
-    color: var(--cor-laranja);
 }
 
 /* ==============================
@@ -478,7 +438,7 @@ a {
 /* HEADER DAS SEÇÕES (TIMES / EQUIPES) */
 .section__header {
     max-width: 46rem;
-    margin: 0 auto 2.75rem;
+    margin: 0 auto 2.5rem;
     text-align: center;
 }
 
@@ -501,7 +461,7 @@ a {
 .section__header h2 {
     font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: var(--font-size-h2);
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.8rem;
     font-weight: 800;
     letter-spacing: 0.015em;
     color: var(--cor-titulos);
@@ -510,14 +470,14 @@ a {
 .section__header p {
     color: var(--cor-texto-suave);
     margin-inline: auto;
-    font-size: 1rem;
+    font-size: 0.96rem;
     line-height: 1.7;
     font-weight: 400;
     font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 /* ==============================
-   CARROSSEL (AJUSTADO)
+   CARROSSEL
    ============================== */
 
 .carousel {
@@ -530,7 +490,7 @@ a {
 /* faixa deslizante com itens lado a lado */
 .carousel__items {
     display: flex;
-    flex-wrap: nowrap;          /* impede quebrar linha */
+    flex-wrap: nowrap;
     gap: 2rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -540,7 +500,7 @@ a {
 
 /* cada card vira um “slide” */
 .carousel__items > .card {
-    flex: 0 0 260px;            /* largura fixa para virar carrossel */
+    flex: 0 0 260px;
     scroll-snap-align: start;
     transition: transform .25s ease, box-shadow .25s ease;
 }
@@ -645,14 +605,14 @@ a {
 
 .card__title {
     font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     margin-top: 0.9rem;
     font-weight: 700;
     color: var(--cor-titulos);
 }
 
 .card__role {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: var(--cor-laranja);
@@ -718,7 +678,7 @@ a {
     color: var(--cor-texto-suave);
     max-width: 40rem;
     margin-inline: auto;
-    font-size: 0.97rem;
+    font-size: 0.95rem;
     line-height: 1.7;
     font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -785,9 +745,15 @@ a {
         justify-content: center;
     }
 
+    /* logo um pouco menor em telas médias */
+    .logo__img {
+        height: clamp(52px, 8vw, 72px);
+    }
+
     .nav {
         flex-wrap: wrap;
         justify-content: center;
+        row-gap: 0.75rem;
     }
 
     .contato {
@@ -803,6 +769,11 @@ a {
 
     .hero {
         padding-top: 3.25rem;
+    }
+
+    /* logo menor em telas muito pequenas */
+    .logo__img {
+        height: 46px;
     }
 
     .card {
