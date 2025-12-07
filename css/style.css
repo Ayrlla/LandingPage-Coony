@@ -136,7 +136,7 @@ button:focus-visible {
     align-items: center;
     padding: 6rem 0;
     /* IMAGEM CORRETA */
-    background-image: url("../imagens-Coony/banner-coony.png");
+    background-image: url("../imagens-Coony/banner-coony5.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -274,6 +274,7 @@ button:focus-visible {
 /* BOTÃO CTA HEADER */
 .nav__cta {
   border-radius: var(--radius-pill);
+  border: 1px solid rgba(237, 134, 75, 0.7);
   padding: 0.45rem 1.4rem;
   font-size: 0.78rem;
   color: var(--cor-laranja-escura);
@@ -377,7 +378,7 @@ button:focus-visible {
     subtítulo. Mantém a legibilidade sem interferir no
     restante do site.
   */
-  color: #fff;
+  color: #f3f0eb;
   max-width: 38rem;
   font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -489,8 +490,34 @@ button:focus-visible {
 }
 
 /* ============================== SEÇÃO INSCRIÇÃO ============================== */
+/* ==================== SEÇÃO INSCRIÇÃO ==================== */
 .inscricao {
   background: #ffffff;
+  position: relative;
+  padding-bottom: 4rem; /* Espaço extra se quiser evitar que o texto encoste na imagem */
+}
+
+.inscricao::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 430px;          /* Ajuste a largura da ilustração */
+  height: 430px;         /* Ajuste a altura da ilustração */
+  background-image: url("../imagens-Coony/corredor2.png"); /* Caminho do arquivo */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  opacity: 0.9;          /* Ajuste a opacidade se necessário */
+  pointer-events: none;  /* Evita que a imagem bloqueie interações */
+}
+
+@media (max-width: 700px) {
+  .inscricao::after {
+    width: 140px;
+    height: 120px;
+    opacity: 0.6; /* Menor e mais sutil em telas pequenas */
+  }
 }
 
 .inscricao__grid {
@@ -552,6 +579,9 @@ button:focus-visible {
 .inscricao__cta {
   margin-top: 0.5rem;
 }
+
+
+
 
 /* ============================ BOTÕES ============================ */
 .btn {
@@ -767,6 +797,8 @@ button:focus-visible {
   position: relative;
   width: 48px;
   height: 48px;
+  min-width: 48px;
+  min-height: 48px;
   border: none;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--cor-laranja), var(--cor-laranja-escura));
@@ -778,6 +810,8 @@ button:focus-visible {
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
   transition: transform var(--transition-base), box-shadow var(--transition-base), opacity var(--transition-base);
+  /* Impede que o botão seja achatado quando usado dentro de um flex container */
+  flex-shrink: 0;
 }
 
 .carousel__button:hover {
@@ -1030,22 +1064,153 @@ button:focus-visible {
   font-size: 0.8rem;
 }
 
-/* ============================== RODAPÉ ============================== */
+/* ============================== RODAPÉ REFINADO ============================== */
 .footer {
-  border-top: 1px solid var(--cor-borda);
-  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  background:
+    radial-gradient(circle at top left, rgba(237, 134, 75, 0.13), transparent 55%),
+    #fff;
 }
 
+/* Conteúdo principal do footer (três colunas) */
 .footer__content {
-  padding-block: 1.6rem;
-  font-size: 0.86rem;
+  padding-block: 2.4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr) minmax(0, 1.2fr);
+  gap: 2.2rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
   color: var(--cor-texto-suave);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: space-between;
-  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
+
+/* Bloco de marca/descrição */
+.footer__brand p {
+  max-width: 22rem;
+  margin-top: 0.6rem;
+  line-height: 1.7;
+}
+
+.footer__logo {
+  height: 42px;
+  width: auto;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* Títulos das colunas (links / redes) */
+.footer__links h4,
+.footer__social h4 {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--cor-titulos);
+  margin-bottom: 0.8rem;
+}
+
+/* Links rápidos */
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer__links a {
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.footer__links a:hover {
+  color: var(--cor-laranja-escura);
+  transform: translateX(2px);
+}
+
+/* Redes sociais */
+.footer__social-list {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.2rem;
+}
+
+.footer__social-list a {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: rgba(237, 134, 75, 0.12);
+  color: var(--cor-laranja-escura);
+  border: 1px solid rgba(237, 134, 75, 0.45);
+  box-shadow: 0 4px 10px rgba(237, 134, 75, 0.2);
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.footer__social-list a:hover {
+  background: linear-gradient(135deg, var(--cor-laranja), var(--cor-laranja-escura));
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(237, 134, 75, 0.4);
+}
+
+/* Faixa inferior com direitos autorais */
+.footer__bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  padding-block: 1rem;
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer__bottom span {
+  white-space: nowrap;
+}
+
+/* ============================== FOOTER – RESPONSIVO ============================== */
+@media (max-width: 800px) {
+  .footer__content {
+    grid-template-columns: 1fr 1fr;
+    padding-block: 2rem;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer__content {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__bottom span {
+    white-space: normal;
+  }
+}
+
+.footer__social-icon img {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
 
 /* ============================== ANIMAÇÕES ============================== */
 @keyframes fadeUp {
